@@ -1,0 +1,15 @@
+#!/bin/bash
+
+while read -r number; do
+  factors=""
+  n="$number"
+  for (( divisor = 2; divisor <= n / 2; divisor++ )); do
+    if (( n % divisor == 0 )); then
+      factors+=" $divisor*$(($n / $divisor))"
+    fi
+  done
+
+  if [ -n "$factors" ]; then
+    echo "$number:$factors"
+  fi
+done < "$1"
